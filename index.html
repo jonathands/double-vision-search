@@ -1,23 +1,68 @@
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' 'nonce-y3RDFtfKCWY='">
     <title>Double Vision - Search</title>
     <link href="https://yarnpkg.com/en/package/normalize.css" type="text/css" />
     <style>
       html {
         background: #f3f3f3;
+        overflow-x: none;
       }
+      #root {
+        display: grid;
+        height:100vh;
+        width: 100vw;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: minmax(auto, auto);
+      }
+      #root iframe {
+        width: 100%;
+        height: 100vh;
+      }
+    .full-width {
+      grid-column: 1 / span 2; 
+    }
     </style>
   </head>
   <body>
-    <div id="root"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.development.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
-    <script>
+    <div id="root">  
+      <input type="text" value={inputValue} onChange={handleInputChange} />
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js" integrity="sha512-8Q6Y9XnTbOE+JNvjBQwJ2H8S+UV4uA6hiRykhdtIyDYZ2TprdNmWOUaKdGzOhyr4dCyk287OejbPvwl7lrfqrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js" integrity="sha512-MOCpqoRoisCTwJ8vQQiciZv0qcpROCidek3GTFS6KTk2+y7munJIlKCVkFCYY+p3ErYFXCjmFjnfTTRSC1OHWQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" nonce="y3RDFtfKCWY=">      
+      const { useState, useEffect } = React;
+      
       const DualSearch = () => {
-        return React.createElement("div", null, "We don't need another hero");
-      }
+        const URL_GOOGLE = 'https://www.google.com/search?q=';
+        const URL_DDG = 'https://duckduckgo.com/?q=';
+        const URL_BING = 'https://www.bing.com/search?q=';
+        const URL_STACKOVERFLOW = 'https://stackoverflow.com/search?q=';
+        const URL_GITHUBISSUES = 'https://github.com/search?q=is%3Aissue+';
 
+        const [query, setQuery] = useState('');
+        const [engines,setEngines] = useState([URL_GOOGLE, URL_DDG]);  
+
+        const handleQuery = (event) => {
+          setQuery(event.target.value);
+        };
+
+        const querySearch = React.createElement('input', {
+          type: 'text',
+          value: query,
+          className: 'full-width',
+          onChange: handleQuery,
+        });
+        
+        const doubleVision = engines.map((e) => {              
+          return React.createElement("iframe", { src: e});
+        })
+        
+        return ( [querySearch, doubleVision] );
+      }
+      
       ReactDOM.render(React.createElement(DualSearch),  document.getElementById("root"));
     </script>
   </body>
