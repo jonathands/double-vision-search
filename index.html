@@ -1,1 +1,24 @@
+<html>
+  <head>
+    <title>Double Vision - Search</title>
+    <link href="https://yarnpkg.com/en/package/normalize.css" type="text/css" />
+    <styles>
+      html {
+        background: #f3f3f3;
+      }
+    </styles>
+  </head>
+  <body>
+    <div id="root"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
+    <script>
+      const DualSearch = () => {
+        return React.createElement("div", null, "We don't need another hero");
+      }
+
+      ReactDOM.render(React.createElement(DualSearch,  document.getElementById("root")));
+    </script>
+  </body>
+</html>
