@@ -46,7 +46,7 @@
 
       const [query, setQuery] = useState('');             
       const [queries, setQueries] = useState([]);             
-      const [engines, setEngines] = useState([URL_GOOGLE, URL_BING, URL_YOUTUBE, URL_STACKOVERFLOW, URL_GITHUBISSUES]);  
+      const [engines, setEngines] = useState([ URL_YOUTUBE,URL_GOOGLE, URL_BING]);  
 
       const handleQuery = (event) => {
         setQuery(event.target.value);
@@ -64,7 +64,7 @@
       const querySearch = React.createElement('input', {
         type: 'text',
         value: query,
-        className: 'full-width peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50',
+        className: 'full-width text-2xl text-center  rounded-[0px]  peer h-full w-full border border-blue-gray-200 border-t-transparent bg-transparent px-4 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50',
         placeholder: "Type and exit the field to search",          
         onChange: handleQuery,
       });
