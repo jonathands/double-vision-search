@@ -45,7 +45,7 @@
 
       const [query, setQuery] = useState('');             
       const [queries, setQueries] = useState([]);             
-      const [engines, setEngines] = useState([URL_DDG, URL_GOOGLE, URL_BING]);  
+      const [engines, setEngines] = useState([URL_GOOGLE, URL_BING]);  
 
       const handleQuery = (event) => {
         setQuery(event.target.value);
@@ -55,6 +55,11 @@
         setQueries(engines.map((e) => e + query));
       }, [query]);
       
+      useEffect(() => {
+          const params = new URLSearchParams(window.location.search);
+          const query = params.get('q');
+      }, []);
+        
       const querySearch = React.createElement('input', {
         type: 'text',
         value: query,
