@@ -57,7 +57,7 @@
       
       useEffect(() => {
           const params = new URLSearchParams(window.location.search);
-          const query = params.get('q');
+          setQuery(params.get('q'));
       }, []);
         
       const querySearch = React.createElement('input', {
