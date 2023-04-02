@@ -8,7 +8,7 @@
     <style>
       html {
         background: #f3f3f3;
-        overflow-x: none;
+        overflow-y: hidden;
       }
       #root {
         display: grid;
@@ -38,6 +38,7 @@
     
     const DualSearch = () => {
       const URL_GOOGLE = 'https://www.google.com/search?q=';
+      const URL_YOUTUBE = 'https://www.youtube.com/results?search_query=';
       const URL_DDG = 'https://duckduckgo.com/?q=';
       const URL_BING = 'https://www.bing.com/search?q=';
       const URL_STACKOVERFLOW = 'https://stackoverflow.com/search?q=';
@@ -45,7 +46,7 @@
 
       const [query, setQuery] = useState('');             
       const [queries, setQueries] = useState([]);             
-      const [engines, setEngines] = useState([URL_GOOGLE, URL_BING]);  
+      const [engines, setEngines] = useState([URL_GOOGLE, URL_BING, URL_YOUTUBE, URL_STACKOVERFLOW, URL_GITHUBISSUES]);  
 
       const handleQuery = (event) => {
         setQuery(event.target.value);
