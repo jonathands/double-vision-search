@@ -1,9 +1,10 @@
 <html>
   <head>
+    <title>Double Vision - Search</title>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' 'nonce-y3RDFtfKCWY='">
-    <title>Double Vision - Search</title>
-    <link href="https://yarnpkg.com/en/package/normalize.css" type="text/css" />
+    <link href="https://yarnpkg.com/en/package/normalize.css" type="text/css" /><link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
     <style>
       html {
         background: #f3f3f3;
@@ -42,21 +43,27 @@
         const URL_STACKOVERFLOW = 'https://stackoverflow.com/search?q=';
         const URL_GITHUBISSUES = 'https://github.com/search?q=is%3Aissue+';
 
-        const [query, setQuery] = useState('');
-        const [engines,setEngines] = useState([URL_GOOGLE, URL_DDG]);  
+        const [query, setQuery] = useState('');             
+        const [queries, setQueries] = useState([]);             
+        const [engines, setEngines] = useState([URL_DDG, URL_GOOGLE, URL_BING]);  
 
         const handleQuery = (event) => {
           setQuery(event.target.value);
         };
-
+        
+        useEffect(() => {
+          setQueries(engines.map((e) => e + query));
+        }, [query]);
+        
         const querySearch = React.createElement('input', {
           type: 'text',
           value: query,
-          className: 'full-width',
-          onBlur: handleQuery,
+          className: 'full-width peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50',
+          placeholder: "Type and exit the field to search",          
+          onChange: handleQuery,
         });
         
-        const doubleVision = engines.map((e) => {              
+        const doubleVision = queries.map((e) => {              
           return React.createElement("iframe", { src: e});
         })
         
